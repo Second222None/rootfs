@@ -4,6 +4,9 @@
 ```
 cp run_ubuntu_x86_64.sh ../
 cp rootfs_ubuntu_x86_64.tar.xz
+./run_ubuntu_x86_64.sh build_kernel
+sudo ./run_ubuntu_x86_64.sh build_rootfs
+sudo ./run_ubuntu_x86_64.sh run
 ```
 
 ## build rootfs
