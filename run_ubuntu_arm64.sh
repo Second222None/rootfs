@@ -97,12 +97,13 @@ run_qemu_ubuntu(){
 		qemu-system-aarch64 -enable-kvm -m 4096 -cpu host  -M virt\
 			-nographic $SMP -kernel arch/arm64/boot/Image \
 			-append "noinintrd root=/dev/vda rootfstype=ext4 rw crashkernel=256M loglevel=8" \
-			-drive if=none,file=$rootfs_image,id=hd0,format=raw \
-			-device virtio-blk-pci,scsi=off,drive=hd0 \
+			-drive if=none,file=$rootfs_image,id=hd0,format=raw,cache=none \
+			-device virtio-blk-pci,scsi=off,drive=hd0,ioeventfd=off \
 			-netdev user,id=nd0 \
 			-device virtio-net-pci,netdev=nd0\
 			-fsdev local,id=kmod_dev,path=./kmodules,security_model=none \
 			-device virtio-9p-pci,fsdev=kmod_dev,mount_tag=kmod_mount\
+			-monitor telnet:127.0.0.1:4445,server,nowait
 			$DBG
 
 }

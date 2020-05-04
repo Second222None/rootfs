@@ -44,6 +44,41 @@ nameserver 8.8.8.8
 sudo tar cfv rootfs_ubuntu_x86_64.tar rootfs_ubuntu_x86_64
 ```
 
+## Access QEMU Monitor
+
+```
+telnet 127.0.0.1 4445
+```
+
+## Use the libvirt NAT **default** Network
+
+- Create virtual **tap** device and add it to **virbr0**
+
+```
+sudo ip tuntap add dev mytap1 mode tap
+sudo brctl addif virbr0 mytap1
+sudo ip link set mytap1 up
+```
+
+- Add the following QEMU command line arguments
+
+```
+-netdev tap,ifname=mytap1,id=myhostnet0,script=no \
+-device virtio-net-pci,netdev=myhostnet0 \
+```
+
+## Tracing I/O Interactions
+All primary exits from kvm to QEMU are via the return path of **KVM_RUN** ioctl. Fortunately for us QEMU already has built in instrumentation for tracing. We will leverage that to selectively trace the return path of **KVM_RUN** and record the exit reasons
+
+There is a second class of KVM-QEMU interaction that go through the ioeventfs,irqfd mechanism which we will instrument later.
+
+### Compile QEMU with **log trace backend**
+
+```
+(qemu) trace-event virtio_notify on 
+(qemu) trace-event virtio_queue_notify on 
+```
+
 
 ## Problems
 
