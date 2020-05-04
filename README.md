@@ -1,6 +1,8 @@
 #rootfs
 
 ## Quick Start
+- Download linux-5.0 source code
+- Change to **linux-5.0** directory
 ```
 cp run_ubuntu_x86_64.sh ../
 cp rootfs_ubuntu_x86_64.tar.xz
