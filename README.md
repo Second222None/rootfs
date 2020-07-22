@@ -85,16 +85,14 @@ There is a second class of KVM-QEMU interaction that go through the ioeventfs,ir
 ## Problems
 
 Fixed the following problems:
-- 1. During boot, Kernel is stuck with the information looks like so:
+- During boot, Kernel is stuck with the information looks like so:
     *Time out waiting for the device dev-ttyAMA0.device.*
-    Solution: Change *BindsTo=dev-%i.device* to *BindsTo=dev-%i*
-    in $rootfs_path/lib/systemd/system/serial-getty\@.service
+    - Solution: Change *BindsTo=dev-%i.device* to *BindsTo=dev-%i* in $rootfs_path/lib/systemd/system/serial-getty\@.service
 
-- 2. Problem: Kernel enter the bash command directly without login.
-    Solution: apt install systemd. Without systemd kernel runs */bin/sh*
-    and enter the bash command directly.
+- Problem: Kernel enter the bash command directly without login.
+    - Solution: apt install systemd. Without systemd kernel runs */bin/sh* and enter the bash command directly.
 
-- 3. Share files between host and VM, enable the following build configuration options:
+- Share files between host and VM, enable the following build configuration options:
     ```
     CONFIG_NET_9P=y (defconfig)
     CONFIG_9P_FS=y  (defconfig)
@@ -103,7 +101,7 @@ Fixed the following problems:
 	CONFIG_9P_FS_POSIX_ACL=y (add manually)
     CONFIG_NET_9P_DEBUG=y (Optional)
     ```
-- 4. Connect to internet
-    Solution: apt install ifupdown/netplan
+- Connect to internet
+    - Solution: apt install ifupdown/netplan
 
 
