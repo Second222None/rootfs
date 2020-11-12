@@ -1,11 +1,12 @@
 # rootfs
 
-## Quick Start
+## Quick Start on X86_64
 - Download linux-5.0 source code
 - Change to **linux-5.0** directory
 ```
 cp run_ubuntu_x86_64.sh ../
 cp rootfs_ubuntu_x86_64.tar.xz
+cp x86_64_ubuntu_defconfig ../arch/x86/configs/ubuntu_defconfig
 cd ..
 ./run_ubuntu_x86_64.sh build_kernel
 sudo ./run_ubuntu_x86_64.sh build_rootfs
