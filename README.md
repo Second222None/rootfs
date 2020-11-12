@@ -14,7 +14,9 @@ sudo ./run_ubuntu_x86_64.sh run
 ```
 
 username: root
+
 password: 111111
+
 
 
 ## build rootfs
@@ -74,6 +76,13 @@ sudo ip link set mytap1 up
 -netdev tap,ifname=mytap1,id=myhostnet0,script=no \
 -device virtio-net-pci,netdev=myhostnet0 \
 ```
+
+## Convert raw image to qcow2
+
+```
+qemu-img convert -f raw -O qcow2 rootfs_ubuntu_x86_64.ext4 rootfs_ubuntu_x86_64.qcow2
+```
+
 
 ## Tracing I/O Interactions
 All primary exits from kvm to QEMU are via the return path of **KVM_RUN** ioctl. Fortunately for us QEMU already has built in instrumentation for tracing. We will leverage that to selectively trace the return path of **KVM_RUN** and record the exit reasons
