@@ -1,4 +1,4 @@
-#rootfs
+# rootfs
 
 ## Quick Start
 - Download linux-5.0 source code
