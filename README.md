@@ -13,6 +13,10 @@ sudo ./run_ubuntu_x86_64.sh build_rootfs
 sudo ./run_ubuntu_x86_64.sh run
 ```
 
+username: root
+password: 111111
+
+
 ## build rootfs
 - Get the ubuntu-base-18.04-base-amd64.tar.gz
 ```
